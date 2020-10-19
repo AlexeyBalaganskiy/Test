@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Test</string>
+    <string name="button_start">Старт</string>
+    <string name="button_refresh">Обновить</string>
+    <string name="text_start">Загрузить пользователей и их посты</string>
+    <string name="text_error">Ошибка! Что-то пошло не так</string>
+    <string name="mail">E-mail:</string>
+    <string name="phone">Phone:</string>
+    <string name="post">post</string>
+    <string name="title_post">title_post</string>
+</resources>
