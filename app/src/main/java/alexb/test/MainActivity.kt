@@ -6,13 +6,9 @@ import alexb.test.list.UsersAdapter
 import alexb.test.model.Post
 import alexb.test.model.Users
 import alexb.test.utils.Resource
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
-import android.widget.ExpandableListView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.size
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -29,11 +25,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         adapter = UsersAdapter(this,data)
         list_view.setAdapter(adapter)
+        setupObservers()
         button_start_refresh.setOnClickListener {
-            setupObservers()
+            postViewModel.update()
+            }
         }
-
-    }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
@@ -44,9 +40,8 @@ class MainActivity : AppCompatActivity() {
             list_view.setIndicatorBoundsRelative(list_view.right - 200, list_view.width)
         }
     }
-
     private fun setupObservers() {
-        postViewModel.getData().observe(this, Observer {
+        postViewModel.data.observe(this, Observer {
             it?.let { resource ->
                 when (resource.status) {
                     Resource.Status.SUCCESS -> {
